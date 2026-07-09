@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CSC3107 Study Quizzes</title>
+  <style>
+    :root {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --ink: #18202b;
+      --muted: #657080;
+      --line: #dfe4ea;
+      --accent: #0f766e;
+      --accent-ink: #ffffff;
+      --good: #15803d;
+      --bad: #b91c1c;
+      --warn: #a16207;
+      --soft: #eef6f4;
+      --maxw: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    header {
+      background: var(--panel);
+      border-bottom: 1px solid var(--line);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .topline {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: end;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(22px, 2.4vw, 34px);
+      letter-spacing: 0;
+    }
+    .sub {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .stats {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .pill {
+      border: 1px solid var(--line);
+      background: #f8fafc;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-weight: 700;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    .controls {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr auto auto;
+      gap: 10px;
+      margin-top: 14px;
+      align-items: center;
+    }
+    .segmented {
+      display: inline-grid;
+      grid-template-columns: repeat(2, minmax(120px, 1fr));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #f8fafc;
+      min-height: 40px;
+    }
+    button, select {
+      font: inherit;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 8px;
+      min-height: 40px;
+    }
+    button {
+      cursor: pointer;
+      font-weight: 700;
+      padding: 8px 12px;
+    }
+    .segmented button {
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+    .segmented button.active {
+      background: var(--accent);
+      color: var(--accent-ink);
+    }
+    select {
+      width: 100%;
+      padding: 8px 10px;
+    }
+    .primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--accent-ink);
+    }
+    main {
+      max-width: var(--maxw);
+      margin: 18px auto 54px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 290px;
+      gap: 18px;
+      align-items: start;
+    }
+    .rail {
+      position: sticky;
+      top: 118px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .rail h2 {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+    .week-list {
+      display: grid;
+      gap: 6px;
+    }
+    .week-btn {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      background: #fff;
+    }
+    .week-btn.active {
+      border-color: var(--accent);
+      background: var(--soft);
+    }
+    .list {
+      display: grid;
+      gap: 12px;
+    }
+    .qcard {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .qhead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .qmeta {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .review {
+      color: var(--warn);
+      border-color: #f3d27a;
+      background: #fff9e8;
+    }
+    .prompt {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+    .prompt :is(pre, code), pre {
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+    .prompt pre, .answer pre {
+      background: #111827;
+      color: #e5e7eb;
+      padding: 10px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .prompt img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .options {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .option {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 9px;
+      align-items: start;
+      background: #fff;
+      cursor: pointer;
+    }
+    .option input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--accent);
+    }
+    .option.correct {
+      border-color: #86efac;
+      background: #f0fdf4;
+    }
+    .option.wrong {
+      border-color: #fecaca;
+      background: #fff1f2;
+    }
+    .matching {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .match-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 180px;
+      gap: 10px;
+      align-items: center;
+    }
+    textarea {
+      width: 100%;
+      min-height: 150px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      font: inherit;
+      margin-top: 12px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .answer {
+      margin-top: 12px;
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+      display: none;
+    }
+    .answer.visible {
+      display: block;
+    }
+    .answer strong {
+      color: var(--accent);
+    }
+    .answer ul {
+      margin: 8px 0 0 20px;
+      padding: 0;
+    }
+    .empty {
+      border: 1px dashed var(--line);
+      background: #fff;
+      border-radius: 8px;
+      padding: 24px;
+      color: var(--muted);
+      text-align: center;
+    }
+    @media (max-width: 900px) {
+      .topline, .controls, main {
+        grid-template-columns: 1fr;
+      }
+      .stats {
+        justify-content: flex-start;
+      }
+      .rail {
+        position: static;
+        order: -1;
+      }
+      .match-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topline">
+        <div>
+          <h1>CSC3107 Study Quizzes</h1>
+          <div class="sub">Information Visualisation practice bank</div>
+        </div>
+        <div class="stats">
+          <span class="pill" id="countPill">0 questions</span>
+          <span class="pill" id="scorePill">Score 0 / 0</span>
+          <span class="pill review" id="reviewPill">0 review</span>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="segmented" aria-label="Mode">
+          <button id="drillMode" class="active" type="button">Topic Drills</button>
+          <button id="mockMode" type="button">Mock Paper</button>
+        </div>
+        <select id="topicSelect" aria-label="Topic"></select>
+        <button id="reviewAllBtn" type="button">Review All Answers</button>
+        <button id="shuffleBtn" class="primary" type="button">Shuffle</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="list" id="quizList"></section>
+    <aside class="rail">
+      <h2>Topics</h2>
+      <div class="week-list" id="weekList"></div>
+    </aside>
+  </main>
+
+  <script src="questions.js"></script>
+  <script>
+    const questions = window.STUDY_QUESTIONS || [];
+    const byId = id => document.getElementById(id);
+    const state = {
+      mode: "drill",
+      topic: "all",
+      week: "all",
+      answered: new Map(),
+      score: 0,
+      possible: 0,
+      orderSeed: Math.floor(Math.random() * 1000000000),
+      optionSeed: Math.floor(Math.random() * 1000000000),
+      currentItems: []
+    };
+
+    const weekLabels = {
+      "all": "All",
+      "week-01": "Week 1",
+      "week-02": "Week 2",
+      "week-03": "Week 3",
+      "week-04": "Week 4",
+      "week-06": "Week 6",
+      "week-08": "Week 8",
+      "week-09": "Week 9",
+      "week-10": "Week 10",
+      "practice": "Practice"
+    };
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;");
+    }
+
+    function markdownLite(value) {
+      const text = String(value ?? "");
+      const parts = [];
+      let cursor = 0;
+      const fence = /```[a-zA-Z0-9_-]*\n([\s\S]*?)```/g;
+      let match;
+      while ((match = fence.exec(text)) !== null) {
+        if (match.index > cursor) {
+          parts.push(escapeHtml(text.slice(cursor, match.index)).replaceAll("\n", "<br>"));
+        }
+        parts.push(`<pre><code>${escapeHtml(match[1].trim())}</code></pre>`);
+        cursor = match.index + match[0].length;
+      }
+      if (cursor < text.length) {
+        parts.push(escapeHtml(text.slice(cursor)).replaceAll("\n", "<br>"));
+      }
+      return parts.join("").replace(/`([^`]+)`/g, "<code>$1</code>");
+    }
+
+    function seededValue(seed, key) {
+      let hash = seed >>> 0;
+      for (let i = 0; i < key.length; i++) {
+        hash = Math.imul(hash ^ key.charCodeAt(i), 16777619) >>> 0;
+      }
+      hash = (hash ^ (hash >>> 16)) >>> 0;
+      hash = Math.imul(hash, 2246822507) >>> 0;
+      hash = (hash ^ (hash >>> 13)) >>> 0;
+      hash = Math.imul(hash, 3266489909) >>> 0;
+      hash = (hash ^ (hash >>> 16)) >>> 0;
+      return hash / 4294967296;
+    }
+
+    function seededShuffle(items, seed, scope) {
+      const copy = [...items];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(seededValue(seed, `${scope}:${i}`) * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function resetProgress() {
+      state.answered.clear();
+      state.score = 0;
+      state.possible = 0;
+    }
+
+    function baseQuestions() {
+      let items = questions;
+      if (state.week !== "all") items = items.filter(q => q.week === state.week);
+      if (state.topic !== "all") items = items.filter(q => q.topic === state.topic);
+      if (state.mode === "mock") {
+        const shuffled = seededShuffle(items, state.orderSeed, "mock-source");
+        const part1 = shuffled.filter(q => q.type !== "open").slice(0, 50);
+        const part1Ids = new Set(part1.map(q => q.id));
+        const part2 = shuffled.filter(q => (q.week === "practice" || q.type === "open") && !part1Ids.has(q.id)).slice(0, 18);
+        items = [...part1, ...part2];
+      }
+      return seededShuffle(items, state.orderSeed, `${state.mode}:${state.week}:${state.topic}`);
+    }
+
+    function viewQuestion(q, index) {
+      if (!q) return null;
+      const copy = { ...q };
+      if ((q.type === "single" || q.type === "multi") && Array.isArray(q.options)) {
+        const order = seededShuffle(q.options.map((_, i) => i), state.optionSeed, `${q.id}:options`);
+        copy.options = order.map(i => q.options[i]);
+        if (q.type === "single") {
+          copy.correct = q.correct === null || q.correct === undefined ? q.correct : order.indexOf(q.correct);
+        } else if (Array.isArray(q.correct)) {
+          copy.correct = q.correct.map(i => order.indexOf(i)).filter(i => i >= 0).sort((a, b) => a - b);
+        }
+      }
+      if (q.type === "matching" && Array.isArray(q.choices)) {
+        const order = seededShuffle(q.choices.map((_, i) => i), state.optionSeed, `${q.id}:choices`);
+        copy.choices = order.map(i => q.choices[i]);
+        copy.correct = Array.isArray(q.correct) ? q.correct.map(i => order.indexOf(i)) : q.correct;
+      }
+      if (q.type === "order" && Array.isArray(q.items)) {
+        const order = seededShuffle(q.items.map((_, i) => i), state.optionSeed, `${q.id}:items`);
+        copy.items = order.map(i => q.items[i]);
+        copy.correct = order.map(i => i);
+      }
+      copy.viewIndex = index;
+      return copy;
+    }
+
+    function visibleQuestions() {
+      return baseQuestions().filter(Boolean).map(viewQuestion).filter(Boolean);
+    }
+
+    function renderControls() {
+      const topics = ["all", ...Array.from(new Set(questions.map(q => q.topic))).sort()];
+      byId("topicSelect").innerHTML = topics
+        .map(topic => `<option value="${escapeHtml(topic)}">${topic === "all" ? "All Topics" : escapeHtml(topic)}</option>`)
+        .join("");
+      byId("topicSelect").value = state.topic;
+
+      const weeks = ["all", ...Array.from(new Set(questions.map(q => q.week))).sort()];
+      const weekCounts = Object.fromEntries(weeks.map(week => [week, week === "all" ? questions.length : questions.filter(q => q.week === week).length]));
+      byId("weekList").innerHTML = weeks.map(week => `
+        <button class="week-btn ${week === state.week ? "active" : ""}" type="button" data-week="${escapeHtml(week)}">
+          <span>${escapeHtml(weekLabels[week] || week)}</span>
+          <span>${weekCounts[week]}</span>
+        </button>
+      `).join("");
+      byId("weekList").querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          state.week = btn.dataset.week;
+          resetProgress();
+          render();
+        });
+      });
+    }
+
+    function answerHtml(q) {
+      const explanation = q.explanation ? `<p><strong>Explanation:</strong> ${escapeHtml(q.explanation)}</p>` : "";
+      if (q.type === "open") {
+        const points = (q.keyPoints || []).map(point => `<li>${escapeHtml(point)}</li>`).join("");
+        return `
+          <div class="answer" data-answer>
+            <p><strong>Ideal answer:</strong> ${escapeHtml(q.idealAnswer || "")}</p>
+            ${points ? `<ul>${points}</ul>` : ""}
+            ${explanation}
+          </div>
+        `;
+      }
+      return `<div class="answer" data-answer>${explanation}</div>`;
+    }
+
+    function renderSingle(q, index) {
+      return `
+        <div class="options">
+          ${q.options.map((option, oi) => `
+            <label class="option" data-option="${oi}" data-auto-check="${index}">
+              <input type="radio" name="${escapeHtml(q.id)}" value="${oi}">
+              <span>${escapeHtml(option)}</span>
+            </label>
+          `).join("")}
+        </div>
+        ${answerHtml(q)}
+      `;
+    }
+
+    function renderMulti(q, index) {
+      return `
+        <div class="options">
+          ${q.options.map((option, oi) => `
+            <label class="option" data-option="${oi}">
+              <input type="checkbox" name="${escapeHtml(q.id)}" value="${oi}">
+              <span>${escapeHtml(option)}</span>
+            </label>
+          `).join("")}
+        </div>
+        <div class="actions"><button type="button" data-check="${index}">Check Selection</button></div>
+        ${answerHtml(q)}
+      `;
+    }
+
+    function renderMatching(q, index) {
+      const choices = q.choices || [];
+      return `
+        <div class="matching">
+          ${(q.stems || []).map((stem, si) => `
+            <div class="match-row" data-match-row="${si}">
+              <div>${escapeHtml(stem)}</div>
+              <select data-match="${si}">
+                <option value="">Select</option>
+                ${choices.map((choice, ci) => `<option value="${ci}">${ci + 1}. ${escapeHtml(choice)}</option>`).join("")}
+              </select>
+            </div>
+          `).join("")}
+        </div>
+        <div class="actions"><button type="button" data-check="${index}">Check</button></div>
+        ${answerHtml(q)}
+      `;
+    }
+
+    function renderOrder(q, index) {
+      const items = q.items || [];
+      return `
+        <div class="matching">
+          ${items.map((item, ii) => `
+            <div class="match-row" data-order-row="${ii}">
+              <div>${escapeHtml(item)}</div>
+              <select data-order="${ii}">
+                <option value="">Select position</option>
+                ${items.map((_, pos) => `<option value="${pos}">${pos + 1}</option>`).join("")}
+              </select>
+            </div>
+          `).join("")}
+        </div>
+        <div class="actions"><button type="button" data-check="${index}">Check Order</button></div>
+        ${answerHtml(q)}
+      `;
+    }
+
+    function renderOpen(q) {
+      return `
+        <textarea aria-label="Written response"></textarea>
+        <div class="actions">
+          <button type="button" data-reveal-open>Reveal Answer</button>
+          <button type="button" data-self-pass>Mark Adequate</button>
+        </div>
+        ${answerHtml(q)}
+      `;
+    }
+
+    function promptMarkup(q) {
+      if (q.promptHtml && q.promptHtml.length < 20000) return q.promptHtml;
+      return markdownLite(q.prompt);
+    }
+
+    function renderQuestion(q, index) {
+      const badge = q.needsReview ? `<span class="pill review">Review</span>` : "";
+      let body = "";
+      if (q.type === "single") body = renderSingle(q, index);
+      if (q.type === "multi") body = renderMulti(q, index);
+      if (q.type === "matching") body = renderMatching(q, index);
+      if (q.type === "order") body = renderOrder(q, index);
+      if (q.type === "open") body = renderOpen(q, index);
+      return `
+        <article class="qcard" data-index="${index}">
+          <div class="qhead">
+            <div class="qmeta">${escapeHtml(weekLabels[q.week] || q.week)} · ${escapeHtml(q.type)}</div>
+            ${badge}
+          </div>
+          <div class="prompt">${promptMarkup(q)}</div>
+          ${body}
+        </article>
+      `;
+    }
+
+    function arraysEqual(a, b) {
+      return a.length === b.length && a.every((value, i) => value === b[i]);
+    }
+
+    function markCard(card, q, correct) {
+      card.querySelector("[data-answer]")?.classList.add("visible");
+      card.querySelectorAll("input, select, button[data-check]").forEach(el => el.disabled = true);
+      if (!state.answered.has(q.id)) {
+        state.answered.set(q.id, correct);
+        if (q.type !== "open" && correct !== null) state.possible += 1;
+        if (correct === true && q.type !== "open") state.score += 1;
+      }
+      updateStats();
+    }
+
+    function checkQuestion(index) {
+      const q = state.currentItems[index];
+      const card = document.querySelector(`[data-index="${index}"]`);
+      if (!q || !card) return;
+      let correct = false;
+      if (q.type === "single") {
+        if (q.correct === null || q.correct === undefined) {
+          markCard(card, q, null);
+          return;
+        }
+        const selected = card.querySelector("input:checked");
+        if (!selected) return;
+        const selectedIndex = Number(selected.value);
+        correct = selectedIndex === q.correct;
+        card.querySelectorAll("[data-option]").forEach(row => {
+          const oi = Number(row.dataset.option);
+          if (oi === q.correct) row.classList.add("correct");
+          if (oi === selectedIndex && !correct) row.classList.add("wrong");
+        });
+      }
+      if (q.type === "multi") {
+        if (!Array.isArray(q.correct)) {
+          markCard(card, q, null);
+          return;
+        }
+        const selected = Array.from(card.querySelectorAll("input:checked")).map(input => Number(input.value)).sort((a, b) => a - b);
+        const expected = [...(q.correct || [])].sort((a, b) => a - b);
+        correct = arraysEqual(selected, expected);
+        card.querySelectorAll("[data-option]").forEach(row => {
+          const oi = Number(row.dataset.option);
+          if (expected.includes(oi)) row.classList.add("correct");
+          if (selected.includes(oi) && !expected.includes(oi)) row.classList.add("wrong");
+        });
+      }
+      if (q.type === "matching") {
+        const selected = Array.from(card.querySelectorAll("[data-match]")).map(select => select.value === "" ? null : Number(select.value));
+        const expected = q.correct || [];
+        if (!expected.length) {
+          markCard(card, q, null);
+          return;
+        }
+        if (selected.includes(null)) return;
+        correct = arraysEqual(selected, expected);
+        card.querySelectorAll("[data-match-row]").forEach(row => {
+          const idx = Number(row.dataset.matchRow);
+          row.style.borderLeft = selected[idx] === expected[idx] ? "4px solid var(--good)" : "4px solid var(--bad)";
+          row.style.paddingLeft = "8px";
+        });
+      }
+      if (q.type === "order") {
+        const selected = Array.from(card.querySelectorAll("[data-order]")).map(select => select.value === "" ? null : Number(select.value));
+        const expected = q.correct || [];
+        if (!expected.length) {
+          markCard(card, q, null);
+          return;
+        }
+        if (selected.includes(null)) return;
+        correct = arraysEqual(selected, expected);
+        card.querySelectorAll("[data-order-row]").forEach(row => {
+          const idx = Number(row.dataset.orderRow);
+          row.style.borderLeft = selected[idx] === expected[idx] ? "4px solid var(--good)" : "4px solid var(--bad)";
+          row.style.paddingLeft = "8px";
+        });
+      }
+      markCard(card, q, correct);
+    }
+
+    function revealAnswer(card, q) {
+      card.querySelector("[data-answer]")?.classList.add("visible");
+      if (q.type === "single" && q.correct !== null && q.correct !== undefined) {
+        card.querySelectorAll("[data-option]").forEach(row => {
+          const oi = Number(row.dataset.option);
+          if (oi === q.correct) {
+            row.classList.add("correct");
+            const input = row.querySelector("input");
+            if (input) input.checked = true;
+          }
+        });
+      }
+      if (q.type === "multi" && Array.isArray(q.correct)) {
+        card.querySelectorAll("[data-option]").forEach(row => {
+          const oi = Number(row.dataset.option);
+          if (q.correct.includes(oi)) {
+            row.classList.add("correct");
+            const input = row.querySelector("input");
+            if (input) input.checked = true;
+          }
+        });
+      }
+      if (q.type === "matching" && Array.isArray(q.correct) && q.correct.length) {
+        card.querySelectorAll("[data-match-row]").forEach(row => {
+          const idx = Number(row.dataset.matchRow);
+          const select = row.querySelector("[data-match]");
+          if (select && q.correct[idx] !== undefined) {
+            select.value = String(q.correct[idx]);
+            row.style.borderLeft = "4px solid var(--good)";
+            row.style.paddingLeft = "8px";
+          }
+        });
+      }
+      if (q.type === "order" && Array.isArray(q.correct) && q.correct.length) {
+        card.querySelectorAll("[data-order-row]").forEach(row => {
+          const idx = Number(row.dataset.orderRow);
+          const select = row.querySelector("[data-order]");
+          if (select && q.correct[idx] !== undefined) {
+            select.value = String(q.correct[idx]);
+            row.style.borderLeft = "4px solid var(--good)";
+            row.style.paddingLeft = "8px";
+          }
+        });
+      }
+      card.querySelectorAll("input, select, button[data-check]").forEach(el => el.disabled = true);
+    }
+
+    function reviewAllAnswers() {
+      state.currentItems.forEach((q, index) => {
+        const card = document.querySelector(`[data-index="${index}"]`);
+        if (card) revealAnswer(card, q);
+      });
+    }
+
+    function updateStats() {
+      const items = state.currentItems;
+      byId("countPill").textContent = `${items.length} questions`;
+      byId("scorePill").textContent = `Score ${state.score} / ${state.possible}`;
+      byId("reviewPill").textContent = `${items.filter(q => q.needsReview).length} review`;
+    }
+
+    function render() {
+      renderControls();
+      byId("drillMode").classList.toggle("active", state.mode === "drill");
+      byId("mockMode").classList.toggle("active", state.mode === "mock");
+      const items = visibleQuestions();
+      state.currentItems = items;
+      byId("quizList").innerHTML = items.length
+        ? items.map(renderQuestion).join("")
+        : `<div class="empty">No questions match the current filters.</div>`;
+      byId("quizList").querySelectorAll("[data-check]").forEach(button => {
+        button.addEventListener("click", () => checkQuestion(Number(button.dataset.check)));
+      });
+      byId("quizList").querySelectorAll("[data-auto-check]").forEach(option => {
+        option.addEventListener("change", () => checkQuestion(Number(option.dataset.autoCheck)));
+      });
+      byId("quizList").querySelectorAll("[data-reveal-open]").forEach(button => {
+        button.addEventListener("click", () => button.closest(".qcard").querySelector("[data-answer]").classList.add("visible"));
+      });
+      byId("quizList").querySelectorAll("[data-self-pass]").forEach(button => {
+        button.addEventListener("click", () => {
+          const card = button.closest(".qcard");
+          const q = items[Number(card.dataset.index)];
+          card.querySelector("[data-answer]").classList.add("visible");
+          if (!state.answered.has(q.id)) state.answered.set(q.id, true);
+          updateStats();
+        });
+      });
+      updateStats();
+    }
+
+    byId("drillMode").addEventListener("click", () => {
+      state.mode = "drill";
+      resetProgress();
+      render();
+    });
+    byId("mockMode").addEventListener("click", () => {
+      state.mode = "mock";
+      resetProgress();
+      render();
+    });
+    byId("topicSelect").addEventListener("change", event => {
+      state.topic = event.target.value;
+      resetProgress();
+      render();
+    });
+    byId("reviewAllBtn").addEventListener("click", reviewAllAnswers);
+    byId("shuffleBtn").addEventListener("click", () => {
+      state.orderSeed = Math.floor(Math.random() * 1000000000);
+      state.optionSeed = Math.floor(Math.random() * 1000000000);
+      resetProgress();
+      render();
+    });
+
+    render();
+  </script>
+</body>
+</html>
