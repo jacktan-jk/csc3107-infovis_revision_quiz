@@ -387,7 +387,8 @@
       "week-08": "Week 8",
       "week-09": "Week 9",
       "week-10": "Week 10",
-      "practice": "Practice"
+      "practice": "Practice",
+      "practice-2": "Practice 2"
     };
 
     function escapeHtml(value) {
@@ -453,7 +454,7 @@
         const shuffled = seededShuffle(items, state.orderSeed, "mock-source");
         const part1 = shuffled.filter(q => q.type !== "open").slice(0, 50);
         const part1Ids = new Set(part1.map(q => q.id));
-        const part2 = shuffled.filter(q => (q.week === "practice" || q.type === "open") && !part1Ids.has(q.id)).slice(0, 18);
+        const part2 = shuffled.filter(q => ((q.week === "practice" || q.week === "practice-2") || q.type === "open") && !part1Ids.has(q.id)).slice(0, 18);
         items = [...part1, ...part2];
       }
       return seededShuffle(items, state.orderSeed, `${state.mode}:${state.week}:${state.topic}`);

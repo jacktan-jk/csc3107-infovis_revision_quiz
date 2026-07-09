@@ -6521,7 +6521,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "In the planning-area bubble plot, select every reason `scale_size_area()` is preferred for population.",
     "options": [
@@ -6559,7 +6559,7 @@
   },
   {
     "type": "order",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Put the plot repair sequence for the planning-area chart in order.",
     "items": [
@@ -6592,7 +6592,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "The plot maps `color = region` globally and then adds `geom_smooth(method = \"lm\")`. Why does that create multiple smooth lines?",
     "options": [
@@ -6626,7 +6626,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every change that helps produce one overall trend line while keeping region colours for points.",
     "options": [
@@ -6664,7 +6664,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "The trend line should give more influence to higher-population planning areas. What is the difference between `geom_smooth(aes(weight = pop), method = \"lm\")` and mapping `size = pop` in the smooth?",
     "options": [
@@ -6698,7 +6698,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every reason not to read the fitted line as individual-level causation.",
     "options": [
@@ -6736,7 +6736,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "The `region` variable is nominal, with categories such as Central, East, North, North-East, and West. What makes Set1 a better candidate than Blues here?",
     "options": [
@@ -6770,7 +6770,7 @@
   },
   {
     "type": "order",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Put the legend override reasoning in order.",
     "items": [
@@ -6803,7 +6803,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every publication-polish issue visible in the pre-polish planning-area plot.",
     "options": [
@@ -6841,7 +6841,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Which layer is best suited to label bubbles while reducing overlaps?",
     "options": [
@@ -6875,7 +6875,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every true statement about a logarithmic transform of bubble sizes in this narrative.",
     "options": [
@@ -6913,7 +6913,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "A reviewer suggests `coord_fixed()` for a plot of median age in years versus mean household size in persons. What is the problem with applying that suggestion automatically?",
     "options": [
@@ -6947,7 +6947,7 @@
   },
   {
     "type": "order",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Put the reasoning for the final trend interpretation in order.",
     "items": [
@@ -6980,7 +6980,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every useful improvement for the WSJ before/after coverage chart.",
     "options": [
@@ -7018,7 +7018,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "In the plot-code matching question, why is the correct plot's connecting line black?",
     "options": [
@@ -7052,7 +7052,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "What visual clue identifies the equirectangular map among the projection choices?",
     "options": [
@@ -7086,7 +7086,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every reason a direct label can be better than a separate legend.",
     "options": [
@@ -7124,7 +7124,7 @@
   },
   {
     "type": "order",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Put a safe redesign process for the WSJ chart in order.",
     "items": [
@@ -7157,7 +7157,7 @@
   },
   {
     "type": "single",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Why should a population legend show values such as 10K, 50K, 100K, and 200K instead of `1e+05` style labels?",
     "options": [
@@ -7191,7 +7191,7 @@
   },
   {
     "type": "multi",
-    "week": "practice",
+    "week": "practice-2",
     "topic": "Practice 2 extension",
     "prompt": "Select every statement that correctly separates data marks from legend keys.",
     "options": [
