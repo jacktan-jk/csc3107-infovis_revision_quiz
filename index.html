@@ -73,7 +73,7 @@
     }
     .controls {
       display: grid;
-      grid-template-columns: 1.1fr 1fr auto auto;
+      grid-template-columns: 1.1fr 0.85fr 1fr auto auto;
       gap: 10px;
       margin-top: 14px;
       align-items: center;
@@ -122,38 +122,6 @@
       max-width: var(--maxw);
       margin: 18px auto 54px;
       padding: 0 16px;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) 290px;
-      gap: 18px;
-      align-items: start;
-    }
-    .rail {
-      position: sticky;
-      top: 118px;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: 8px;
-      padding: 12px;
-    }
-    .rail h2 {
-      margin: 0 0 8px;
-      font-size: 15px;
-    }
-    .week-list {
-      display: grid;
-      gap: 6px;
-    }
-    .week-btn {
-      width: 100%;
-      text-align: left;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      background: #fff;
-    }
-    .week-btn.active {
-      border-color: var(--accent);
-      background: var(--soft);
     }
     .list {
       display: grid;
@@ -288,18 +256,77 @@
       text-align: center;
     }
     @media (max-width: 900px) {
-      .topline, .controls, main {
+      header {
+        position: static;
+      }
+      .topline, .controls {
         grid-template-columns: 1fr;
       }
       .stats {
         justify-content: flex-start;
       }
-      .rail {
-        position: static;
-        order: -1;
-      }
       .match-row {
         grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .wrap {
+        padding: 8px 10px;
+      }
+      .topline {
+        gap: 6px;
+      }
+      h1 {
+        font-size: 18px;
+      }
+      .sub {
+        display: none;
+      }
+      .stats {
+        gap: 5px;
+      }
+      .pill {
+        padding: 5px 7px;
+        font-size: 11px;
+      }
+      .controls {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .segmented,
+      #weekSelect,
+      #topicSelect {
+        grid-column: 1 / -1;
+      }
+      .segmented {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        min-height: 34px;
+      }
+      button, select {
+        min-height: 34px;
+        font-size: 13px;
+      }
+      button {
+        padding: 6px 8px;
+      }
+      main {
+        margin: 10px auto 32px;
+        padding: 0 10px;
+        gap: 10px;
+      }
+      .qcard {
+        padding: 10px;
+      }
+      .qhead {
+        margin-bottom: 8px;
+      }
+      .prompt {
+        font-size: 14px;
+      }
+      .option {
+        padding: 8px;
+        grid-template-columns: 24px minmax(0, 1fr);
       }
     }
   </style>
@@ -315,7 +342,6 @@
         <div class="stats">
           <span class="pill" id="countPill">0 questions</span>
           <span class="pill" id="scorePill">Score 0 / 0</span>
-          <span class="pill review" id="reviewPill">0 review</span>
         </div>
       </div>
       <div class="controls">
@@ -323,6 +349,7 @@
           <button id="drillMode" class="active" type="button">Topic Drills</button>
           <button id="mockMode" type="button">Mock Paper</button>
         </div>
+        <select id="weekSelect" aria-label="Week"></select>
         <select id="topicSelect" aria-label="Topic"></select>
         <button id="reviewAllBtn" type="button">Review All Answers</button>
         <button id="shuffleBtn" class="primary" type="button">Shuffle</button>
@@ -332,10 +359,6 @@
 
   <main>
     <section class="list" id="quizList"></section>
-    <aside class="rail">
-      <h2>Topics</h2>
-      <div class="week-list" id="weekList"></div>
-    </aside>
   </main>
 
   <script src="questions.js"></script>
@@ -475,19 +498,10 @@
 
       const weeks = ["all", ...Array.from(new Set(questions.map(q => q.week))).sort()];
       const weekCounts = Object.fromEntries(weeks.map(week => [week, week === "all" ? questions.length : questions.filter(q => q.week === week).length]));
-      byId("weekList").innerHTML = weeks.map(week => `
-        <button class="week-btn ${week === state.week ? "active" : ""}" type="button" data-week="${escapeHtml(week)}">
-          <span>${escapeHtml(weekLabels[week] || week)}</span>
-          <span>${weekCounts[week]}</span>
-        </button>
-      `).join("");
-      byId("weekList").querySelectorAll("button").forEach(btn => {
-        btn.addEventListener("click", () => {
-          state.week = btn.dataset.week;
-          resetProgress();
-          render();
-        });
-      });
+      byId("weekSelect").innerHTML = weeks
+        .map(week => `<option value="${escapeHtml(week)}">${escapeHtml(weekLabels[week] || week)} (${weekCounts[week]})</option>`)
+        .join("");
+      byId("weekSelect").value = state.week;
     }
 
     function answerHtml(q) {
@@ -793,6 +807,11 @@
     });
     byId("topicSelect").addEventListener("change", event => {
       state.topic = event.target.value;
+      resetProgress();
+      render();
+    });
+    byId("weekSelect").addEventListener("change", event => {
+      state.week = event.target.value;
       resetProgress();
       render();
     });
