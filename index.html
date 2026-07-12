@@ -763,7 +763,6 @@
       const items = state.currentItems;
       byId("countPill").textContent = `${items.length} questions`;
       byId("scorePill").textContent = `Score ${state.score} / ${state.possible}`;
-      byId("reviewPill").textContent = `${items.filter(q => q.needsReview).length} review`;
     }
 
     function render() {
@@ -782,14 +781,50 @@
         option.addEventListener("change", () => checkQuestion(Number(option.dataset.autoCheck)));
       });
       byId("quizList").querySelectorAll("[data-reveal-open]").forEach(button => {
-        button.addEventListener("click", () => button.closest(".qcard").querySelector("[data-answer]").classList.add("visible"));
+        button.addEventListener("click", () => {
+          const card = button.closest(".qcard");
+          const q = items[Number(card.dataset.index)];
+
+          card.querySelector("[data-answer]")?.classList.add("visible");
+
+          // Revealing counts as one attempted question, but does not award a point.
+          if (!state.answered.has(q.id)) {
+            state.answered.set(q.id, false);
+            state.possible += 1;
+          }
+
+          // Reveal is one-time, but the user can still mark their response adequate.
+          button.disabled = true;
+          card.querySelector("textarea")?.setAttribute("disabled", "");
+
+          updateStats();
+        });
       });
       byId("quizList").querySelectorAll("[data-self-pass]").forEach(button => {
         button.addEventListener("click", () => {
           const card = button.closest(".qcard");
           const q = items[Number(card.dataset.index)];
-          card.querySelector("[data-answer]").classList.add("visible");
-          if (!state.answered.has(q.id)) state.answered.set(q.id, true);
+          const previousResult = state.answered.get(q.id);
+
+          card.querySelector("[data-answer]")?.classList.add("visible");
+
+          if (!state.answered.has(q.id)) {
+            // Marking adequate before reveal counts as both attempted and correct.
+            state.answered.set(q.id, true);
+            state.possible += 1;
+            state.score += 1;
+          } else if (previousResult === false) {
+            // If already revealed, convert the existing attempt from incorrect to correct.
+            state.answered.set(q.id, true);
+            state.score += 1;
+          }
+
+          // Both actions are now final for this question, preventing score spamming.
+          card.querySelectorAll("[data-reveal-open], [data-self-pass]").forEach(control => {
+            control.disabled = true;
+          });
+          card.querySelector("textarea")?.setAttribute("disabled", "");
+
           updateStats();
         });
       });
