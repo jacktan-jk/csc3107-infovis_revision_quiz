@@ -122,28 +122,25 @@
     "number": 5
   },
   {
-    "id": "class-lab-week-1-quarto-lab-quiz-6",
-    "type": "single",
+    "id": "replacement-week-01-accessible-alt-text",
+    "type": "open",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "Your QMD file embeds an image with `![A pencil sketch I made of my dog](images/sketch.png){#fig-sketch}`. Why must the file `images/sketch.png` be included in the submitted ZIP folder?",
-    "options": [
-      "The image file contains the cross-reference label `#fig-sketch`; without it, the `@fig-sketch` reference in your prose cannot be resolved.",
-      "Without the image file in the ZIP, your QMD will not render on the grader’s computer because the relative path `images/sketch.png` will not resolve to any file on their system.",
-      "xSITe automatically scans every submission for inappropriate image content and rejects ZIPs without images.",
-      "Quarto requires every embedded image to be uploaded to a separate hosting URL before the document can be rendered."
-    ],
-    "correct": 1,
-    "explanation": "Correct answer: Without the image file in the ZIP, your QMD will not render on the grader’s computer because the relative path `images/sketch.png` will not resolve to any file on their system. A relative image path is resolved on the machine that renders the QMD, so the referenced image file must travel with the submission.",
+    "prompt": "A chart shows that delays rise sharply after 18:00. Which alt text is most useful to someone who cannot see the chart?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Useful alt text communicates the chart's relevant pattern instead of describing its filename or merely announcing that an image exists.",
     "source": {
-      "kind": "class-lab",
-      "path": "class-quizzes\\merged_lab_answer_key.md",
-      "section": "Week 1 Quarto Lab: Quiz",
-      "answerKeyPath": "answer-keys\\iv_all_lab_answer_key.json",
-      "answerKeyRow": 5,
-      "answerKeyAnswer": "b. Without the image ﬁle in the ZIP, your QMD will not render on the grader’s computer because the relative path images/sketch.png will not resolve to any ﬁle on their system."
+      "kind": "source-derived-drill",
+      "paths": [
+        "tut/wk1_why_data_vis.html",
+        "lab/week_01_quarto_tutorial.html"
+      ]
     },
     "needsReview": false,
+    "idealAnswer": "Flight delays stay fairly low earlier in the day and rise sharply after 18:00.. Useful alt text communicates the chart's relevant pattern instead of describing its filename or merely announcing that an image exists.",
+    "keyPoints": [
+      "Gives the answer: Flight delays stay fairly low earlier in the day and rise sharply after 18:00.",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 6
   },
   {
@@ -2075,17 +2072,19 @@
     "number": 85
   },
   {
-    "id": "drill-week-01-1-why-not",
-    "type": "open",
+    "id": "drill-week-01-1-application",
+    "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "A student answers the following question with **eval: false**:\n\n> Which Quarto cell option hides source code while still running the code?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "echo: false. echo: false suppresses displayed source while evaluation still happens.",
-    "keyPoints": [
-      "Names echo: false as the correct answer.",
-      "Explains that echo: false suppresses displayed source while evaluation still happens."
+    "prompt": "A document-level setting uses `echo: true`, but one code cell uses `#| echo: false`. What happens for that cell?",
+    "options": [
+      "Its source is shown because YAML always wins",
+      "The cell is not evaluated",
+      "The entire document stops rendering",
+      "Its source is hidden and the cell still runs"
     ],
-    "explanation": "A complete correction identifies echo: false and applies this rule: echo: false suppresses displayed source while evaluation still happens.",
+    "correct": 3,
+    "explanation": "A cell-level option overrides the document default for that cell; `echo` changes source display, not evaluation.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2121,17 +2120,12 @@
     "number": 87
   },
   {
-    "id": "drill-week-01-2-why-not",
+    "id": "drill-week-01-2-application",
     "type": "open",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "During revision, a classmate claims **include: false** is the answer to this question:\n\n> Which Quarto cell option stops code execution but can still show the source code?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "eval: false. eval: false prevents execution; it does not by itself hide the code.",
-    "keyPoints": [
-      "Names eval: false as the correct answer.",
-      "Explains that eval: false prevents execution; it does not by itself hide the code."
-    ],
-    "explanation": "A complete correction identifies eval: false and applies this rule: eval: false prevents execution; it does not by itself hide the code.",
+    "prompt": "When is `echo: fenced` useful in a Quarto teaching document?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "`echo: fenced` displays the source as a fenced code block, including cell options.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2140,6 +2134,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "When readers should see the source together with its cell-option lines. `echo: fenced` displays the source as a fenced code block, including cell options.",
+    "keyPoints": [
+      "Gives the answer: When readers should see the source together with its cell-option lines",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 88
   },
   {
@@ -2167,17 +2166,19 @@
     "number": 89
   },
   {
-    "id": "drill-week-01-3-why-not",
-    "type": "open",
+    "id": "drill-week-01-3-application",
+    "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Which Quarto option is most appropriate for a setup chunk that should run but show neither code nor output?\n\nAttempt: **eval: false**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "include: false. include: false runs the code but excludes code and output from the rendered document.",
-    "keyPoints": [
-      "Names include: false as the correct answer.",
-      "Explains that include: false runs the code but excludes code and output from the rendered document."
+    "prompt": "A Quarto table of contents is enabled but a section is missing from it. What should be checked first?",
+    "options": [
+      "Whether every code cell has `echo: true`",
+      "Whether the plot uses a zero baseline",
+      "Whether the document contains a factor",
+      "Whether the section uses a proper Markdown heading"
     ],
-    "explanation": "A complete correction identifies include: false and applies this rule: include: false runs the code but excludes code and output from the rendered document.",
+    "correct": 3,
+    "explanation": "Quarto builds the table of contents from the document's heading structure.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2193,15 +2194,15 @@
     "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "Why should an image referenced with a relative path be submitted with the QMD file?",
+    "prompt": "A figure is labelled `#fig-sales` in a Quarto document. Which reference should be used in the prose so Quarto can number and link the figure?",
     "options": [
-      "The grader needs the file at that relative path",
-      "Quarto embeds every local image into YAML",
-      "R stores images in the working memory",
-      "The image contains the figure label"
+      "@fig-sales",
+      "#fig-sales",
+      "[fig-sales]",
+      "toc: fig-sales"
     ],
     "correct": 0,
-    "explanation": "Relative paths only resolve if the referenced file is present in the submitted folder.",
+    "explanation": "Quarto cross-references a labelled figure with the `@fig-...` form.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2213,17 +2214,19 @@
     "number": 91
   },
   {
-    "id": "drill-week-01-4-why-not",
-    "type": "open",
+    "id": "drill-week-01-4-application",
+    "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "A learner chose **Quarto embeds every local image into YAML** when asked: “Why should an image referenced with a relative path be submitted with the QMD file?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "The grader needs the file at that relative path. Relative paths only resolve if the referenced file is present in the submitted folder.",
-    "keyPoints": [
-      "Names The grader needs the file at that relative path as the correct answer.",
-      "Explains that Relative paths only resolve if the referenced file is present in the submitted folder."
+    "prompt": "A chart uses tilted 3D bars to compare exact values. What is the most defensible redesign?",
+    "options": [
+      "Remove the numeric axis",
+      "Use flat 2D marks on a common scale",
+      "Increase the perspective angle",
+      "Add shadows to make depth clearer"
     ],
-    "explanation": "A complete correction identifies The grader needs the file at that relative path and applies this rule: Relative paths only resolve if the referenced file is present in the submitted folder.",
+    "correct": 1,
+    "explanation": "Perspective changes apparent lengths and positions; flat marks on a common scale support comparison.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2239,8 +2242,8 @@
     "type": "open",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "What is the main risk of a bar chart with a non-zero baseline?\n\nAnswer without options, then justify your answer in one sentence.",
-    "explanation": "Bar charts encode by length, so truncating the baseline distorts the visual ratio.",
+    "prompt": "A chart already labels each line directly at its endpoint. What is the strongest reason to remove the separate colour legend?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Direct labels can reduce lookup effort when they clearly identify each series.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2249,25 +2252,27 @@
       ]
     },
     "needsReview": false,
-    "idealAnswer": "Visible bar lengths stop being proportional to values. Bar charts encode by length, so truncating the baseline distorts the visual ratio.",
+    "idealAnswer": "Readers no longer need to look back and forth between lines and legend keys. Direct labels can reduce lookup effort when they clearly identify each series.",
     "keyPoints": [
-      "Gives the answer: Visible bar lengths stop being proportional to values",
+      "Gives the answer: Readers no longer need to look back and forth between lines and legend keys",
       "Provides a relevant conceptual or behavioral justification."
     ],
     "number": 93
   },
   {
-    "id": "drill-week-01-5-why-not",
-    "type": "open",
+    "id": "drill-week-01-5-application",
+    "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "A student answers the following question with **The chart cannot use labels**:\n\n> What is the main risk of a bar chart with a non-zero baseline?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Visible bar lengths stop being proportional to values. Bar charts encode by length, so truncating the baseline distorts the visual ratio.",
-    "keyPoints": [
-      "Names Visible bar lengths stop being proportional to values as the correct answer.",
-      "Explains that Bar charts encode by length, so truncating the baseline distorts the visual ratio."
+    "prompt": "Two values differ only slightly and the difference—not magnitude from zero—is the message. Which design avoids truncating bar lengths?",
+    "options": [
+      "Use bars whose baseline starts at the smaller value",
+      "Use 3D bars to magnify the gap",
+      "Remove the axis labels",
+      "Use points or a dumbbell plot on a clearly labelled scale"
     ],
-    "explanation": "A complete correction identifies Visible bar lengths stop being proportional to values and applies this rule: Bar charts encode by length, so truncating the baseline distorts the visual ratio.",
+    "correct": 3,
+    "explanation": "A position-based display can focus on a small difference without using truncated bar length as the encoding.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2280,18 +2285,11 @@
   },
   {
     "id": "drill-week-01-6",
-    "type": "single",
+    "type": "open",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "Why can a point chart sometimes use a narrow y-axis more safely than a bar chart?",
-    "options": [
-      "Point area is not the value encoding",
-      "Points always imply zero baselines",
-      "Point charts cannot compare values",
-      "Points remove all scale effects"
-    ],
-    "correct": 0,
-    "explanation": "Points use position rather than bar length or area as the main encoding.",
+    "prompt": "Which image description is most useful as alt text in a data report?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Useful alt text communicates the information needed to understand the figure rather than its file metadata.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2300,20 +2298,27 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "A concise statement of the figure's relevant content or takeaway. Useful alt text communicates the information needed to understand the figure rather than its file metadata.",
+    "keyPoints": [
+      "Gives the answer: A concise statement of the figure's relevant content or takeaway",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 95
   },
   {
-    "id": "drill-week-01-6-why-not",
-    "type": "open",
+    "id": "drill-week-01-6-application",
+    "type": "single",
     "week": "week-01",
     "topic": "Quarto and visual communication",
-    "prompt": "During revision, a classmate claims **Points always imply zero baselines** is the answer to this question:\n\n> Why can a point chart sometimes use a narrow y-axis more safely than a bar chart?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Point area is not the value encoding. Points use position rather than bar length or area as the main encoding.",
-    "keyPoints": [
-      "Names Point area is not the value encoding as the correct answer.",
-      "Explains that Points use position rather than bar length or area as the main encoding."
+    "prompt": "A figure label is `#fig-sales`, but the prose contains `#fig-sales` rather than a cross-reference. What change is needed?",
+    "options": [
+      "Rename the figure to `sales.png`",
+      "Write `@fig-sales` in the prose",
+      "Write `toc: sales` in YAML",
+      "Set `eval: false` on the figure cell"
     ],
-    "explanation": "A complete correction identifies Point area is not the value encoding and applies this rule: Points use position rather than bar length or area as the main encoding.",
+    "correct": 1,
+    "explanation": "The label declaration uses `#fig-sales`; prose references use `@fig-sales`.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2349,17 +2354,19 @@
     "number": 97
   },
   {
-    "id": "drill-week-02-7-why-not",
-    "type": "open",
+    "id": "drill-week-02-7-application",
+    "type": "single",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: In R, what does x[c(2, 4)] do?\n\nAttempt: **Drops the second and fourth elements**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "Returns the second and fourth elements. Numeric indexing with positive integers selects those positions.",
-    "keyPoints": [
-      "Names Returns the second and fourth elements as the correct answer.",
-      "Explains that Numeric indexing with positive integers selects those positions."
+    "prompt": "Given `x <- c(4, NA, 9, 2)`, what does `x[!is.na(x) & x > 3]` return?",
+    "options": [
+      "4, NA, and 9",
+      "NA only",
+      "2 only",
+      "4 and 9"
     ],
-    "explanation": "A complete correction identifies Returns the second and fourth elements and applies this rule: Numeric indexing with positive integers selects those positions.",
+    "correct": 3,
+    "explanation": "The logical index requires values to be non-missing and greater than 3.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2395,17 +2402,12 @@
     "number": 99
   },
   {
-    "id": "drill-week-02-8-why-not",
+    "id": "drill-week-02-8-application",
     "type": "open",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "A learner chose **The smallest value** when asked: “Which rank receives 1 when using min_rank(desc(value))?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "The largest value. desc() reverses the ordering before ranking.",
-    "keyPoints": [
-      "Names The largest value as the correct answer.",
-      "Explains that desc() reverses the ordering before ranking."
-    ],
-    "explanation": "A complete correction identifies The largest value and applies this rule: desc() reverses the ordering before ranking.",
+    "prompt": "A filter uses `x == NA` to find missing elements and returns no `TRUE` matches. What is the error in that test?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "`NA` represents an unknown value, so equality with it is unknown rather than `TRUE` or `FALSE`.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2414,6 +2416,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Comparisons with `NA` produce `NA`; missingness must be tested with `is.na()`. `NA` represents an unknown value, so equality with it is unknown rather than `TRUE` or `FALSE`.",
+    "keyPoints": [
+      "Gives the answer: Comparisons with `NA` produce `NA`; missingness must be tested with `is.na()`",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 100
   },
   {
@@ -2441,17 +2448,12 @@
     "number": 101
   },
   {
-    "id": "drill-week-02-9-why-not",
+    "id": "drill-week-02-9-application",
     "type": "open",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "A student answers the following question with **A numeric vector with decimals**:\n\n> What does factor() primarily create?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "A categorical vector with levels. Factors store categorical values using a fixed set of levels.",
-    "keyPoints": [
-      "Names A categorical vector with levels as the correct answer.",
-      "Explains that Factors store categorical values using a fixed set of levels."
-    ],
-    "explanation": "A complete correction identifies A categorical vector with levels and applies this rule: Factors store categorical values using a fixed set of levels.",
+    "prompt": "What is invalid about the index `x[c(1, -3)]`?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Positive positions select while negative positions exclude, so R does not allow them to be mixed in one subscript except for zero.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2460,6 +2462,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Positive and negative subscripts cannot be mixed except with zero. Positive positions select while negative positions exclude, so R does not allow them to be mixed in one subscript except for zero.",
+    "keyPoints": [
+      "Gives the answer: Positive and negative subscripts cannot be mixed except with zero",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 102
   },
   {
@@ -2487,17 +2494,19 @@
     "number": 103
   },
   {
-    "id": "drill-week-02-10-why-not",
-    "type": "open",
+    "id": "drill-week-02-10-application",
+    "type": "single",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "During revision, a classmate claims **To remove all missing values** is the answer to this question:\n\n> Why use fct_recode() in a tutorial data-cleaning step?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "To rename factor levels. fct_recode() maps old factor labels to new labels.",
-    "keyPoints": [
-      "Names To rename factor levels as the correct answer.",
-      "Explains that fct_recode() maps old factor labels to new labels."
+    "prompt": "A factor has levels `low < medium < high`. Which statement about `rating > 'medium'` is correct?",
+    "options": [
+      "It identifies observations at the `high` level",
+      "It compares labels alphabetically",
+      "It is invalid for every factor",
+      "It converts the factor to numeric scores automatically"
     ],
-    "explanation": "A complete correction identifies To rename factor levels and applies this rule: fct_recode() maps old factor labels to new labels.",
+    "correct": 0,
+    "explanation": "An ordered factor uses its declared level order for comparisons.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2510,11 +2519,18 @@
   },
   {
     "id": "drill-week-02-11",
-    "type": "open",
+    "type": "single",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "What does is.na(x) return?\n\nAnswer without options, then justify your answer in one sentence.",
-    "explanation": "is.na() tests each element and returns TRUE where the value is missing.",
+    "prompt": "A vector `x` contains several missing values. Which expression returns the number of missing elements?",
+    "options": [
+      "x == NA",
+      "sum(is.na(x))",
+      "is.na(x)",
+      "length(na.omit(x))"
+    ],
+    "correct": 1,
+    "explanation": "`is.na(x)` marks missing elements and `sum()` counts the resulting `TRUE` values.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2523,25 +2539,22 @@
       ]
     },
     "needsReview": false,
-    "idealAnswer": "A logical vector marking missing values. is.na() tests each element and returns TRUE where the value is missing.",
-    "keyPoints": [
-      "Gives the answer: A logical vector marking missing values",
-      "Provides a relevant conceptual or behavioral justification."
-    ],
     "number": 105
   },
   {
-    "id": "drill-week-02-11-why-not",
-    "type": "open",
+    "id": "drill-week-02-11-application",
+    "type": "single",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: What does is.na(x) return?\n\nAttempt: **A count of missing values**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "A logical vector marking missing values. is.na() tests each element and returns TRUE where the value is missing.",
-    "keyPoints": [
-      "Names A logical vector marking missing values as the correct answer.",
-      "Explains that is.na() tests each element and returns TRUE where the value is missing."
+    "prompt": "In `case_match(x, 'A' ~ 1, 'B' ~ 2, .default = 0)`, what is returned for an unlisted value?",
+    "options": [
+      "The original value",
+      "An error before matching begins",
+      "0",
+      "NA in every case"
     ],
-    "explanation": "A complete correction identifies A logical vector marking missing values and applies this rule: is.na() tests each element and returns TRUE where the value is missing.",
+    "correct": 2,
+    "explanation": "`.default` supplies the output for values not matched by an explicit case.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2577,17 +2590,19 @@
     "number": 107
   },
   {
-    "id": "drill-week-02-12-why-not",
-    "type": "open",
+    "id": "drill-week-02-12-application",
+    "type": "single",
     "week": "week-02",
     "topic": "R vectors, factors, and subsetting",
-    "prompt": "A learner chose **&&** when asked: “Which operator combines logical tests elementwise in R?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "&. & is vectorised over elements; && only checks the first element of each side.",
-    "keyPoints": [
-      "Names & as the correct answer.",
-      "Explains that & is vectorised over elements; && only checks the first element of each side."
+    "prompt": "Values are `10, 10, 8`. What ranks does `dense_rank(desc(value))` assign in row order?",
+    "options": [
+      "1, 1, 2",
+      "1, 1, 3",
+      "2, 2, 1",
+      "1, 2, 3"
     ],
-    "explanation": "A complete correction identifies & and applies this rule: & is vectorised over elements; && only checks the first element of each side.",
+    "correct": 0,
+    "explanation": "Descending dense ranks give tied maxima rank 1 and the next distinct value rank 2 without a gap.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2603,15 +2618,15 @@
     "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "What does select(where(is.numeric)) do in dplyr?",
+    "prompt": "What does `rename_with(toupper, where(is.numeric))` change?",
     "options": [
-      "Pivots columns longer",
-      "Keeps columns satisfying a predicate",
-      "Keeps rows satisfying a predicate",
-      "Counts numeric columns"
+      "The order of numeric rows",
+      "The names of numeric columns",
+      "The values in numeric columns",
+      "Only rows containing numbers"
     ],
     "correct": 1,
-    "explanation": "where() applies a predicate to columns inside select().",
+    "explanation": "`rename_with()` applies a naming function to selected column names without changing their values.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2623,17 +2638,19 @@
     "number": 109
   },
   {
-    "id": "drill-week-03-13-why-not",
-    "type": "open",
+    "id": "drill-week-03-13-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "A student answers the following question with **Keeps rows satisfying a predicate**:\n\n> What does select(where(is.numeric)) do in dplyr?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Keeps columns satisfying a predicate. where() applies a predicate to columns inside select().",
-    "keyPoints": [
-      "Names Keeps columns satisfying a predicate as the correct answer.",
-      "Explains that where() applies a predicate to columns inside select()."
+    "prompt": "A pipeline must remove delayed flights and then add delay in hours. Which verb order matches that task?",
+    "options": [
+      "`arrange()` followed by `rename()`",
+      "`summarize()` followed by `pivot_wider()`",
+      "`filter()` followed by `mutate()`",
+      "`mutate()` followed by `select()`"
     ],
-    "explanation": "A complete correction identifies Keeps columns satisfying a predicate and applies this rule: where() applies a predicate to columns inside select().",
+    "correct": 2,
+    "explanation": "`filter()` selects rows; `mutate()` creates or changes columns.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2669,17 +2686,19 @@
     "number": 111
   },
   {
-    "id": "drill-week-03-14-why-not",
-    "type": "open",
+    "id": "drill-week-03-14-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "During revision, a classmate claims **Multiple rows in arrange order** is the answer to this question:\n\n> What does mutate(across(...)) target?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Multiple columns in one mutate step. across() lets mutate or summarise apply a function over selected columns.",
-    "keyPoints": [
-      "Names Multiple columns in one mutate step as the correct answer.",
-      "Explains that across() lets mutate or summarise apply a function over selected columns."
+    "prompt": "After `summarize(mean_delay = mean(delay, na.rm = TRUE), .by = carrier)`, what determines the number of result rows?",
+    "options": [
+      "The number of distinct carrier values",
+      "The number of input flights",
+      "The number of numeric columns",
+      "The number of missing delay values"
     ],
-    "explanation": "A complete correction identifies Multiple columns in one mutate step and applies this rule: across() lets mutate or summarise apply a function over selected columns.",
+    "correct": 0,
+    "explanation": "`.by = carrier` produces one summary row for each carrier group.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2692,11 +2711,18 @@
   },
   {
     "id": "drill-week-03-15",
-    "type": "open",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "Why use arrange(desc(x), y)?\n\nAnswer without options, then justify your answer in one sentence.",
-    "explanation": "arrange() uses later columns as tie-breakers.",
+    "prompt": "Which dplyr call returns the three rows with the largest values of `score`, including ties only when requested?",
+    "options": [
+      "select(score, n = 3)",
+      "slice_max(score, n = 3)",
+      "arrange(score, n = 3)",
+      "summarize(max(score), n = 3)"
+    ],
+    "correct": 1,
+    "explanation": "`slice_max()` selects rows with the largest values and provides an explicit `with_ties` control.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2705,25 +2731,22 @@
       ]
     },
     "needsReview": false,
-    "idealAnswer": "Sort by x descending, then y ascending for ties. arrange() uses later columns as tie-breakers.",
-    "keyPoints": [
-      "Gives the answer: Sort by x descending, then y ascending for ties",
-      "Provides a relevant conceptual or behavioral justification."
-    ],
     "number": 113
   },
   {
-    "id": "drill-week-03-15-why-not",
-    "type": "open",
+    "id": "drill-week-03-15-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Why use arrange(desc(x), y)?\n\nAttempt: **Filter x and y simultaneously**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "Sort by x descending, then y ascending for ties. arrange() uses later columns as tie-breakers.",
-    "keyPoints": [
-      "Names Sort by x descending, then y ascending for ties as the correct answer.",
-      "Explains that arrange() uses later columns as tie-breakers."
+    "prompt": "A table has columns `Jan`, `Feb`, and `Mar`, and you need one `month` column plus one `sales` column. Which transformation is needed?",
+    "options": [
+      "`inner_join()`",
+      "`relocate()`",
+      "`pivot_longer()`",
+      "`pivot_wider()`"
     ],
-    "explanation": "A complete correction identifies Sort by x descending, then y ascending for ties and applies this rule: arrange() uses later columns as tie-breakers.",
+    "correct": 2,
+    "explanation": "`pivot_longer()` gathers several measure columns into name and value columns.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2759,17 +2782,19 @@
     "number": 115
   },
   {
-    "id": "drill-week-03-16-why-not",
-    "type": "open",
+    "id": "drill-week-03-16-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "A learner chose **One row per original observation** when asked: “What does summarize(mean_x = mean(x), .by = group) return?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "One summary row per group. .by groups for that summarise call.",
-    "keyPoints": [
-      "Names One summary row per group as the correct answer.",
-      "Explains that .by groups for that summarise call."
+    "prompt": "Which join finds rows in `orders` whose customer key has no match in `customers`?",
+    "options": [
+      "`anti_join(orders, customers, by = 'customer_id')`",
+      "`inner_join(orders, customers, by = 'customer_id')`",
+      "`left_join(customers, orders, by = 'customer_id')`",
+      "`full_join(orders, customers, by = 'customer_id')`"
     ],
-    "explanation": "A complete correction identifies One summary row per group and applies this rule: .by groups for that summarise call.",
+    "correct": 0,
+    "explanation": "`anti_join()` returns rows from the left input without a match in the right input.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2805,17 +2830,19 @@
     "number": 117
   },
   {
-    "id": "drill-week-03-17-why-not",
-    "type": "open",
+    "id": "drill-week-03-17-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "A student answers the following question with **pivot_wider()**:\n\n> Which tidyr verb usually turns many measure columns into key-value rows?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "pivot_longer(). pivot_longer() makes a data set longer by gathering columns into rows.",
-    "keyPoints": [
-      "Names pivot_longer() as the correct answer.",
-      "Explains that pivot_longer() makes a data set longer by gathering columns into rows."
+    "prompt": "A key occurs twice in `x` and three times in `y`. How many rows can an inner join produce for that key?",
+    "options": [
+      "3",
+      "2",
+      "6",
+      "5"
     ],
-    "explanation": "A complete correction identifies pivot_longer() and applies this rule: pivot_longer() makes a data set longer by gathering columns into rows.",
+    "correct": 2,
+    "explanation": "A many-to-many match forms every matching pair, so two left rows times three right rows gives six rows.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2849,17 +2876,19 @@
     "number": 119
   },
   {
-    "id": "drill-week-03-18-why-not",
-    "type": "open",
+    "id": "drill-week-03-18-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "During revision, a classmate claims **All rows from the left table** is the answer to this question:\n\n> What does an inner_join keep?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Rows with matching keys in both tables. inner_join() drops unmatched rows from either input.",
-    "keyPoints": [
-      "Names Rows with matching keys in both tables as the correct answer.",
-      "Explains that inner_join() drops unmatched rows from either input."
+    "prompt": "Why choose `map_dbl()` instead of `map()` when every iteration should return one number?",
+    "options": [
+      "It enforces and returns a double vector",
+      "It modifies the input list in place",
+      "It automatically groups the data",
+      "It skips every missing input"
     ],
-    "explanation": "A complete correction identifies Rows with matching keys in both tables and applies this rule: inner_join() drops unmatched rows from either input.",
+    "correct": 0,
+    "explanation": "A typed map variant checks that each result can form the requested atomic vector type.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2895,17 +2924,19 @@
     "number": 121
   },
   {
-    "id": "drill-week-03-19-why-not",
-    "type": "open",
+    "id": "drill-week-03-19-application",
+    "type": "single",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: What does left_join(x, y, by = key) preserve?\n\nAttempt: **All rows from y only**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "All rows from x. A left join keeps the left table's rows and adds matching right-side columns.",
-    "keyPoints": [
-      "Names All rows from x as the correct answer.",
-      "Explains that A left join keeps the left table's rows and adds matching right-side columns."
+    "prompt": "Inside `mutate(across(where(is.numeric), scale, .names = '{.col}_z'))`, what does `.names` control?",
+    "options": [
+      "Order of join matches",
+      "Values treated as missing",
+      "Names of the generated columns",
+      "Rows included in each group"
     ],
-    "explanation": "A complete correction identifies All rows from x and applies this rule: A left join keeps the left table's rows and adds matching right-side columns.",
+    "correct": 2,
+    "explanation": "The `.names` template controls names created by `across()`.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2939,17 +2970,12 @@
     "number": 123
   },
   {
-    "id": "drill-week-03-20-why-not",
+    "id": "drill-week-03-20-application",
     "type": "open",
     "week": "week-03",
     "topic": "Data wrangling with dplyr and tidyr",
-    "prompt": "A learner chose **Changing axis limits** when asked: “What is map() commonly used for in tidyverse workflows?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "Applying a function to each element of a list/vector. purrr::map() iterates a function over elements and returns a list by default.",
-    "keyPoints": [
-      "Names Applying a function to each element of a list/vector as the correct answer.",
-      "Explains that purrr::map() iterates a function over elements and returns a list by default."
-    ],
-    "explanation": "A complete correction identifies Applying a function to each element of a list/vector and applies this rule: purrr::map() iterates a function over elements and returns a list by default.",
+    "prompt": "A table has one row per person and separate `height` and `weight` columns. Which result indicates an accidental misuse of `pivot_wider()`?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Turning measure columns into rows requires `pivot_longer()`; `pivot_wider()` moves values in the opposite direction.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -2958,6 +2984,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "The table becomes even wider instead of creating measurement rows. Turning measure columns into rows requires `pivot_longer()`; `pivot_wider()` moves values in the opposite direction.",
+    "keyPoints": [
+      "Gives the answer: The table becomes even wider instead of creating measurement rows",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 124
   },
   {
@@ -2983,17 +3014,12 @@
     "number": 125
   },
   {
-    "id": "drill-week-04-21-why-not",
+    "id": "drill-week-04-21-application",
     "type": "open",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "A student answers the following question with **A rendered PNG file**:\n\n> What object does ggplot(data, aes(...)) create before geoms are added?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "A plot object with data and mappings. ggplot() initializes the plot; geoms add visible layers.",
-    "keyPoints": [
-      "Names A plot object with data and mappings as the correct answer.",
-      "Explains that ggplot() initializes the plot; geoms add visible layers."
-    ],
-    "explanation": "A complete correction identifies A plot object with data and mappings and applies this rule: ggplot() initializes the plot; geoms add visible layers.",
+    "prompt": "A global mapping sets `colour = species`, but one reference line must stay black. Where should black be specified?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "A fixed layer argument overrides inherited mapping for that layer without creating a colour scale value.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3002,6 +3028,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "As a fixed argument in that reference-line layer. A fixed layer argument overrides inherited mapping for that layer without creating a colour scale value.",
+    "keyPoints": [
+      "Gives the answer: As a fixed argument in that reference-line layer",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 126
   },
   {
@@ -3027,17 +3058,19 @@
     "number": 127
   },
   {
-    "id": "drill-week-04-22-why-not",
-    "type": "open",
+    "id": "drill-week-04-22-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "During revision, a classmate claims **geom_path() only draws points** is the answer to this question:\n\n> How does geom_line() differ from geom_path()?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "geom_line() orders by x; geom_path() follows row order. geom_path() connects observations in data order; geom_line() orders by x within groups.",
-    "keyPoints": [
-      "Names geom_line() orders by x; geom_path() follows row order as the correct answer.",
-      "Explains that geom_path() connects observations in data order; geom_line() orders by x within groups."
+    "prompt": "A line plot connects observations from different subjects. What mapping is commonly missing?",
+    "options": [
+      "`group = subject`",
+      "`fill = after_stat(count)`",
+      "`z = subject`",
+      "`weight = subject`"
     ],
-    "explanation": "A complete correction identifies geom_line() orders by x; geom_path() follows row order and applies this rule: geom_path() connects observations in data order; geom_line() orders by x within groups.",
+    "correct": 0,
+    "explanation": "A group mapping tells the line layer which observations belong to each separate path.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3073,17 +3106,19 @@
     "number": 129
   },
   {
-    "id": "drill-week-04-23-why-not",
-    "type": "open",
+    "id": "drill-week-04-23-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Which geom can encode overlapping repeated points by count?\n\nAttempt: **geom_histogram()**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "geom_count(). geom_count() maps duplicate point counts to size.",
-    "keyPoints": [
-      "Names geom_count() as the correct answer.",
-      "Explains that geom_count() maps duplicate point counts to size."
+    "prompt": "Which geom compares several distributions using unfilled lines based on histogram bins?",
+    "options": [
+      "`geom_boxplot()`",
+      "`geom_raster()`",
+      "`geom_freqpoly()`",
+      "`geom_count()`"
     ],
-    "explanation": "A complete correction identifies geom_count() and applies this rule: geom_count() maps duplicate point counts to size.",
+    "correct": 2,
+    "explanation": "A frequency polygon uses binned counts connected by lines and can compare groups without overlapping filled bars.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3117,17 +3152,19 @@
     "number": 131
   },
   {
-    "id": "drill-week-04-24-why-not",
-    "type": "open",
+    "id": "drill-week-04-24-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "A learner chose **A histogram of x values** when asked: “What does geom_smooth() add by default to many scatterplots?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "A fitted trend line with uncertainty band. geom_smooth() estimates and displays a smoothed relationship.",
-    "keyPoints": [
-      "Names A fitted trend line with uncertainty band as the correct answer.",
-      "Explains that geom_smooth() estimates and displays a smoothed relationship."
+    "prompt": "Two histograms use different x ranges but must use the same interval width. Which argument should be held constant?",
+    "options": [
+      "`binwidth`",
+      "`alpha`",
+      "`linewidth`",
+      "`show.legend`"
     ],
-    "explanation": "A complete correction identifies A fitted trend line with uncertainty band and applies this rule: geom_smooth() estimates and displays a smoothed relationship.",
+    "correct": 0,
+    "explanation": "`binwidth` fixes the width of each histogram interval in data units.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3161,17 +3198,19 @@
     "number": 133
   },
   {
-    "id": "drill-week-04-25-why-not",
-    "type": "open",
+    "id": "drill-week-04-25-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "A student answers the following question with **Number of facet panels**:\n\n> What does bins control in geom_histogram()?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Number of bins across the x range. bins sets how many intervals the continuous variable is cut into.",
-    "keyPoints": [
-      "Names Number of bins across the x range as the correct answer.",
-      "Explains that bins sets how many intervals the continuous variable is cut into."
+    "prompt": "What does the total area under a standard density curve represent?",
+    "options": [
+      "The number of bins",
+      "The largest observation",
+      "1",
+      "The sample size"
     ],
-    "explanation": "A complete correction identifies Number of bins across the x range and applies this rule: bins sets how many intervals the continuous variable is cut into.",
+    "correct": 2,
+    "explanation": "A probability density is normalized so its total area is one.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3205,17 +3244,19 @@
     "number": 135
   },
   {
-    "id": "drill-week-04-26-why-not",
-    "type": "open",
+    "id": "drill-week-04-26-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "During revision, a classmate claims **To convert x to a factor** is the answer to this question:\n\n> Why use after_stat(density) for a histogram combined with density?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "To put histogram bars on a density scale. A density curve uses area 1; after_stat(density) makes histogram heights comparable.",
-    "keyPoints": [
-      "Names To put histogram bars on a density scale as the correct answer.",
-      "Explains that A density curve uses area 1; after_stat(density) makes histogram heights comparable."
+    "prompt": "What problem does `geom_jitter()` address in a plot of discrete x values?",
+    "options": [
+      "Points drawn exactly on top of one another",
+      "Incorrect factor level labels",
+      "Missing coordinate reference systems",
+      "Unequal histogram bin widths"
     ],
-    "explanation": "A complete correction identifies To put histogram bars on a density scale and applies this rule: A density curve uses area 1; after_stat(density) makes histogram heights comparable.",
+    "correct": 0,
+    "explanation": "Jitter adds small positional noise so coincident observations become visible.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3251,17 +3292,19 @@
     "number": 137
   },
   {
-    "id": "drill-week-04-27-why-not",
-    "type": "open",
+    "id": "drill-week-04-27-application",
+    "type": "single",
     "week": "week-04",
     "topic": "ggplot layers and distributions",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: What does facet_wrap(~ group) do?\n\nAttempt: **Combines all groups into one row**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "Creates small multiples by group. Faceting repeats the same plot structure for each group level.",
-    "keyPoints": [
-      "Names Creates small multiples by group as the correct answer.",
-      "Explains that Faceting repeats the same plot structure for each group level."
+    "prompt": "A second layer should use a summary table rather than the plot's original data. How is that supplied?",
+    "options": [
+      "Put the table name in `theme()`",
+      "Use `coord_cartesian(data = summary_table)`",
+      "Set `data = summary_table` in that layer",
+      "Replace the x scale with the table"
     ],
-    "explanation": "A complete correction identifies Creates small multiples by group and applies this rule: Faceting repeats the same plot structure for each group level.",
+    "correct": 2,
+    "explanation": "Each layer can receive its own data while inheriting or defining suitable mappings.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3295,17 +3338,19 @@
     "number": 139
   },
   {
-    "id": "drill-week-06-28-why-not",
-    "type": "open",
+    "id": "drill-week-06-28-application",
+    "type": "single",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "A learner chose **When y should count rows** when asked: “When should geom_col() be preferred over geom_bar()?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "When y values are already computed. geom_col() uses the supplied y values; geom_bar() counts by default.",
-    "keyPoints": [
-      "Names When y values are already computed as the correct answer.",
-      "Explains that geom_col() uses the supplied y values; geom_bar() counts by default."
+    "prompt": "A data frame already contains one row per category with a `total` column. Which bar layer uses those totals directly?",
+    "options": [
+      "`geom_col(aes(y = total))`",
+      "`geom_bar()` with no y mapping",
+      "`geom_count(aes(y = total))`",
+      "`geom_histogram(aes(y = total))`"
     ],
-    "explanation": "A complete correction identifies When y values are already computed and applies this rule: geom_col() uses the supplied y values; geom_bar() counts by default.",
+    "correct": 0,
+    "explanation": "`geom_col()` uses supplied y values rather than applying the count statistic.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3341,17 +3386,12 @@
     "number": 141
   },
   {
-    "id": "drill-week-06-29-why-not",
+    "id": "drill-week-06-29-application",
     "type": "open",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "A student answers the following question with **Uses y = 1 for every bar**:\n\n> What does geom_bar() do without a y aesthetic?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Counts rows in each x category. The default stat for geom_bar() is count.",
-    "keyPoints": [
-      "Names Counts rows in each x category as the correct answer.",
-      "Explains that The default stat for geom_bar() is count."
-    ],
-    "explanation": "A complete correction identifies Counts rows in each x category and applies this rule: The default stat for geom_bar() is count.",
+    "prompt": "What does `position = 'fill'` do to stacked bars?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "The fill position normalizes each stack to one, displaying within-bar proportions.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3360,6 +3400,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Scales each stack to a common height so segment proportions can be compared. The fill position normalizes each stack to one, displaying within-bar proportions.",
+    "keyPoints": [
+      "Gives the answer: Scales each stack to a common height so segment proportions can be compared",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 142
   },
   {
@@ -3387,17 +3432,12 @@
     "number": 143
   },
   {
-    "id": "drill-week-06-30-why-not",
+    "id": "drill-week-06-30-application",
     "type": "open",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "During revision, a classmate claims **For unordered categories** is the answer to this question:\n\n> When is geom_raster() usually faster than geom_tile()?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "For regular grids with equal tile sizes. geom_raster() is optimized for regular raster grids.",
-    "keyPoints": [
-      "Names For regular grids with equal tile sizes as the correct answer.",
-      "Explains that geom_raster() is optimized for regular raster grids."
-    ],
-    "explanation": "A complete correction identifies For regular grids with equal tile sizes and applies this rule: geom_raster() is optimized for regular raster grids.",
+    "prompt": "Grid cells have unequal widths, but a plot uses `geom_raster()`. What assumption makes that geom unsuitable?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Raster geometry is the optimized regular-grid case; unequal cells need a more general tile geometry.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3406,6 +3446,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "It assumes a regular grid of equal-sized cells. Raster geometry is the optimized regular-grid case; unequal cells need a more general tile geometry.",
+    "keyPoints": [
+      "Gives the answer: It assumes a regular grid of equal-sized cells",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 144
   },
   {
@@ -3433,17 +3478,12 @@
     "number": 145
   },
   {
-    "id": "drill-week-06-31-why-not",
+    "id": "drill-week-06-31-application",
     "type": "open",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: In contour plots, what aesthetic supplies the third variable?\n\nAttempt: **shape**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "z. Contours trace levels of z over x-y space.",
-    "keyPoints": [
-      "Names z as the correct answer.",
-      "Explains that Contours trace levels of z over x-y space."
-    ],
-    "explanation": "A complete correction identifies z and applies this rule: Contours trace levels of z over x-y space.",
+    "prompt": "Which layer displays filled regions between contour levels rather than contour lines only?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "`geom_contour_filled()` converts ranges of z into filled contour bands.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3452,6 +3492,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "`geom_contour_filled()`. `geom_contour_filled()` converts ranges of z into filled contour bands.",
+    "keyPoints": [
+      "Gives the answer: `geom_contour_filled()`",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 146
   },
   {
@@ -3479,17 +3524,19 @@
     "number": 147
   },
   {
-    "id": "drill-week-06-32-why-not",
-    "type": "open",
+    "id": "drill-week-06-32-application",
+    "type": "single",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "A learner chose **Log scale** when asked: “Which aesthetic is generally best for unordered categories?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "Shape or qualitative colour. Categorical variables need discrete encodings.",
-    "keyPoints": [
-      "Names Shape or qualitative colour as the correct answer.",
-      "Explains that Categorical variables need discrete encodings."
+    "prompt": "A numeric code `1, 2, 3` represents three unordered groups. What should happen before mapping it to shape?",
+    "options": [
+      "Convert the code to a factor",
+      "Take its logarithm",
+      "Map it to continuous size",
+      "Use it as a contour z value"
     ],
-    "explanation": "A complete correction identifies Shape or qualitative colour and applies this rule: Categorical variables need discrete encodings.",
+    "correct": 0,
+    "explanation": "Shape is discrete, so numeric category codes should be represented as categorical values.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3525,17 +3572,19 @@
     "number": 149
   },
   {
-    "id": "drill-week-06-33-why-not",
-    "type": "open",
+    "id": "drill-week-06-33-application",
+    "type": "single",
     "week": "week-06",
     "topic": "Aesthetics, bars, rasters, and contours",
-    "prompt": "A student answers the following question with **Line width always means category**:\n\n> Why should line width be handled carefully for extensive quantities?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Visual area/length can imply magnitude. Size-like aesthetics carry magnitude impressions and can mislead when scaled poorly.",
-    "keyPoints": [
-      "Names Visual area/length can imply magnitude as the correct answer.",
-      "Explains that Size-like aesthetics carry magnitude impressions and can mislead when scaled poorly."
+    "prompt": "A map compares population density, not population total. Which encoding avoids implying that larger regions contain more of the measured quantity?",
+    "options": [
+      "Use line width as an exact count",
+      "Duplicate each region by its density",
+      "Map density to colour rather than polygon area",
+      "Scale polygon area by density"
     ],
-    "explanation": "A complete correction identifies Visual area/length can imply magnitude and applies this rule: Size-like aesthetics carry magnitude impressions and can mislead when scaled poorly.",
+    "correct": 2,
+    "explanation": "Density is intensive; colour can encode its value without treating geographic area as accumulated amount.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3548,18 +3597,11 @@
   },
   {
     "id": "drill-week-08-34",
-    "type": "single",
+    "type": "open",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "What is the difference between limits and breaks on a scale?",
-    "options": [
-      "Breaks filter rows; limits rename labels",
-      "Limits set colours; breaks set shapes",
-      "They are synonyms",
-      "Limits set data range shown; breaks set tick positions"
-    ],
-    "correct": 3,
-    "explanation": "Scale limits define the displayed domain while breaks define guide marks.",
+    "prompt": "What does the `expand` argument on a position scale control?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Scale expansion adds configurable space beyond the data range at the ends of an axis.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3568,20 +3610,27 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Padding between the data range and the plot boundary. Scale expansion adds configurable space beyond the data range at the ends of an axis.",
+    "keyPoints": [
+      "Gives the answer: Padding between the data range and the plot boundary",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 151
   },
   {
-    "id": "drill-week-08-34-why-not",
-    "type": "open",
+    "id": "drill-week-08-34-application",
+    "type": "single",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "During revision, a classmate claims **Breaks filter rows; limits rename labels** is the answer to this question:\n\n> What is the difference between limits and breaks on a scale?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Limits set data range shown; breaks set tick positions. Scale limits define the displayed domain while breaks define guide marks.",
-    "keyPoints": [
-      "Names Limits set data range shown; breaks set tick positions as the correct answer.",
-      "Explains that Scale limits define the displayed domain while breaks define guide marks."
+    "prompt": "A continuous scale uses `oob = scales::squish`. What happens to values outside its limits?",
+    "options": [
+      "They are clamped to the nearest limit",
+      "They create new factor levels",
+      "They are all converted to zero",
+      "They reverse the legend order"
     ],
-    "explanation": "A complete correction identifies Limits set data range shown; breaks set tick positions and applies this rule: Scale limits define the displayed domain while breaks define guide marks.",
+    "correct": 0,
+    "explanation": "The squish out-of-bounds handler moves values below or above the range to the nearest boundary.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3617,17 +3666,19 @@
     "number": 153
   },
   {
-    "id": "drill-week-08-35-why-not",
-    "type": "open",
+    "id": "drill-week-08-35-application",
+    "type": "single",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Which scale preserves proportional area for bubble sizes?\n\nAttempt: **scale_size_continuous()**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "scale_size_area(). scale_size_area() maps zero to zero and scales point area appropriately.",
-    "keyPoints": [
-      "Names scale_size_area() as the correct answer.",
-      "Explains that scale_size_area() maps zero to zero and scales point area appropriately."
+    "prompt": "Breaks are `c(0, 0.5, 1)` and labels are `c('0%', '50%', '100%')`. What must be true?",
+    "options": [
+      "Breaks must be character strings",
+      "Limits are inferred only from label text",
+      "Each break has a corresponding label",
+      "Labels change the underlying values"
     ],
-    "explanation": "A complete correction identifies scale_size_area() and applies this rule: scale_size_area() maps zero to zero and scales point area appropriately.",
+    "correct": 2,
+    "explanation": "Manual label vectors must align with the break positions they describe.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3661,17 +3712,12 @@
     "number": 155
   },
   {
-    "id": "drill-week-08-36-why-not",
+    "id": "drill-week-08-36-application",
     "type": "open",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "A learner chose **scale_linewidth(reverse = TRUE)** when asked: “Which guide call reverses a linewidth legend?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "guides(linewidth = guide_legend(reverse = TRUE)). guide_legend(reverse = TRUE) controls legend key ordering.",
-    "keyPoints": [
-      "Names guides(linewidth = guide_legend(reverse = TRUE)) as the correct answer.",
-      "Explains that guide_legend(reverse = TRUE) controls legend key ordering."
-    ],
-    "explanation": "A complete correction identifies guides(linewidth = guide_legend(reverse = TRUE)) and applies this rule: guide_legend(reverse = TRUE) controls legend key ordering.",
+    "prompt": "A reviewer treats a log transformation as if it only changed axis text. What crucial effect have they missed?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Scale transformations affect the mapping from data to position, whereas labels affect presentation.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3680,6 +3726,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "A transformation changes positions on the scale; formatting changes displayed text only. Scale transformations affect the mapping from data to position, whereas labels affect presentation.",
+    "keyPoints": [
+      "Gives the answer: A transformation changes positions on the scale; formatting changes displayed text only",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 156
   },
   {
@@ -3687,8 +3738,8 @@
     "type": "open",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "Why override legend aesthetics?\n\nAnswer without options, then justify your answer in one sentence.",
-    "explanation": "override.aes affects legend display, not the data layer.",
+    "prompt": "What does `na.value` control on a colour scale?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "`na.value` defines how missing values are displayed by the colour or fill scale.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3697,25 +3748,20 @@
       ]
     },
     "needsReview": false,
-    "idealAnswer": "To make legend keys readable without changing the plotted data. override.aes affects legend display, not the data layer.",
+    "idealAnswer": "The colour used for missing mapped values. `na.value` defines how missing values are displayed by the colour or fill scale.",
     "keyPoints": [
-      "Gives the answer: To make legend keys readable without changing the plotted data",
+      "Gives the answer: The colour used for missing mapped values",
       "Provides a relevant conceptual or behavioral justification."
     ],
     "number": 157
   },
   {
-    "id": "drill-week-08-37-why-not",
+    "id": "drill-week-08-37-application",
     "type": "open",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "A student answers the following question with **To change raw data values**:\n\n> Why override legend aesthetics?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "To make legend keys readable without changing the plotted data. override.aes affects legend display, not the data layer.",
-    "keyPoints": [
-      "Names To make legend keys readable without changing the plotted data as the correct answer.",
-      "Explains that override.aes affects legend display, not the data layer."
-    ],
-    "explanation": "A complete correction identifies To make legend keys readable without changing the plotted data and applies this rule: override.aes affects legend display, not the data layer.",
+    "prompt": "How can a colour legend be removed while keeping the colour mapping in the plot?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Disabling a guide hides the legend without removing the scale mapping from marks.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3724,6 +3770,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Use `guides(colour = 'none')` or the scale's `guide = 'none'`. Disabling a guide hides the legend without removing the scale mapping from marks.",
+    "keyPoints": [
+      "Gives the answer: Use `guides(colour = 'none')` or the scale's `guide = 'none'`",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 158
   },
   {
@@ -3751,17 +3802,19 @@
     "number": 159
   },
   {
-    "id": "drill-week-08-38-why-not",
-    "type": "open",
+    "id": "drill-week-08-38-application",
+    "type": "single",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "During revision, a classmate claims **Sequential** is the answer to this question:\n\n> Which ColorBrewer family is appropriate for nominal categories?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Qualitative. Nominal categories need distinct hues rather than ordered ramps.",
-    "keyPoints": [
-      "Names Qualitative as the correct answer.",
-      "Explains that Nominal categories need distinct hues rather than ordered ramps."
+    "prompt": "A manual colour scale has five factor levels but supplies only four colours. What is the problem?",
+    "options": [
+      "At least one level lacks an intended colour assignment",
+      "The scale becomes continuous automatically",
+      "The fifth level is removed from the data",
+      "The plot changes to a raster"
     ],
-    "explanation": "A complete correction identifies Qualitative and applies this rule: Nominal categories need distinct hues rather than ordered ramps.",
+    "correct": 0,
+    "explanation": "A manual discrete scale needs values covering the levels that should be displayed.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3797,17 +3850,19 @@
     "number": 161
   },
   {
-    "id": "drill-week-08-39-why-not",
-    "type": "open",
+    "id": "drill-week-08-39-application",
+    "type": "single",
     "week": "week-08",
     "topic": "Scales and guides",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Which palette family is suited to ordered low-to-high values?\n\nAttempt: **Qualitative**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "Sequential. Sequential palettes communicate magnitude progression.",
-    "keyPoints": [
-      "Names Sequential as the correct answer.",
-      "Explains that Sequential palettes communicate magnitude progression."
+    "prompt": "Values represent change around zero. Which palette structure communicates both direction and distance from zero?",
+    "options": [
+      "A one-sided sequential palette with no midpoint",
+      "A random set of greys",
+      "A diverging palette centred at zero",
+      "An unordered qualitative palette"
     ],
-    "explanation": "A complete correction identifies Sequential and applies this rule: Sequential palettes communicate magnitude progression.",
+    "correct": 2,
+    "explanation": "A diverging palette emphasizes deviations on both sides of a meaningful midpoint.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3842,17 +3897,19 @@
     "number": 163
   },
   {
-    "id": "drill-week-09-40-why-not",
-    "type": "open",
+    "id": "drill-week-09-40-application",
+    "type": "single",
     "week": "week-09",
     "topic": "Coordinates, facets, and themes",
-    "prompt": "A learner chose **Changes the data values** when asked: “What does coord_flip() mainly do?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "Swaps x and y display axes. Coordinate systems affect how layers are drawn after data/stat transformations.",
-    "keyPoints": [
-      "Names Swaps x and y display axes as the correct answer.",
-      "Explains that Coordinate systems affect how layers are drawn after data/stat transformations."
+    "prompt": "What is a major caution when converting bars to angles with `coord_polar()`?",
+    "options": [
+      "Angle and area comparisons are usually harder than aligned length comparisons",
+      "The data frame is permanently converted to polar coordinates",
+      "Faceting becomes impossible",
+      "All scale labels become factors"
     ],
-    "explanation": "A complete correction identifies Swaps x and y display axes and applies this rule: Coordinate systems affect how layers are drawn after data/stat transformations.",
+    "correct": 0,
+    "explanation": "Polar bars replace aligned lengths with less precise angle or area judgments.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3884,17 +3941,12 @@
     "number": 165
   },
   {
-    "id": "drill-week-09-41-why-not",
+    "id": "drill-week-09-41-application",
     "type": "open",
     "week": "week-09",
     "topic": "Coordinates, facets, and themes",
-    "prompt": "A student answers the following question with **Drops data before every statistic**:\n\n> What does coord_cartesian(xlim = ...) do compared with scale_x_continuous(limits = ...)?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "Zooms display without dropping data before stats. coord_cartesian() is a visual zoom; scale limits can remove data before stats are computed.",
-    "keyPoints": [
-      "Names Zooms display without dropping data before stats as the correct answer.",
-      "Explains that coord_cartesian() is a visual zoom; scale limits can remove data before stats are computed."
-    ],
-    "explanation": "A complete correction identifies Zooms display without dropping data before stats and applies this rule: coord_cartesian() is a visual zoom; scale limits can remove data before stats are computed.",
+    "prompt": "What trade-off comes with `facet_wrap(scales = 'free_y')`?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Free scales can reveal local variation at the cost of a shared visual reference.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3902,6 +3954,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Within-panel patterns may be clearer, but magnitudes are harder to compare across panels. Free scales can reveal local variation at the cost of a shared visual reference.",
+    "keyPoints": [
+      "Gives the answer: Within-panel patterns may be clearer, but magnitudes are harder to compare across panels",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 166
   },
   {
@@ -3926,17 +3983,19 @@
     "number": 167
   },
   {
-    "id": "drill-week-09-42-why-not",
-    "type": "open",
+    "id": "drill-week-09-42-application",
+    "type": "single",
     "week": "week-09",
     "topic": "Coordinates, facets, and themes",
-    "prompt": "During revision, a classmate claims **Changing point shapes** is the answer to this question:\n\n> What is facet_grid(rows ~ cols) useful for?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "Crossing two faceting variables into a grid. facet_grid() lays out panels by row and column variables.",
-    "keyPoints": [
-      "Names Crossing two faceting variables into a grid as the correct answer.",
-      "Explains that facet_grid() lays out panels by row and column variables."
+    "prompt": "Which theme setting removes major grid lines without changing data or scales?",
+    "options": [
+      "`theme(panel.grid.major = element_blank())`",
+      "`filter(panel.grid.major == FALSE)`",
+      "`scale_y_continuous(grid = FALSE)`",
+      "`coord_cartesian(grid = FALSE)`"
     ],
-    "explanation": "A complete correction identifies Crossing two faceting variables into a grid and applies this rule: facet_grid() lays out panels by row and column variables.",
+    "correct": 0,
+    "explanation": "Grid lines are non-data components controlled by theme elements.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -3970,17 +4029,19 @@
     "number": 169
   },
   {
-    "id": "drill-week-09-43-why-not",
-    "type": "open",
+    "id": "drill-week-09-43-application",
+    "type": "single",
     "week": "week-09",
     "topic": "Coordinates, facets, and themes",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: What does theme_minimal() change?\n\nAttempt: **The underlying data**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "Non-data styling elements. Themes control appearance such as backgrounds, grids, and text.",
-    "keyPoints": [
-      "Names Non-data styling elements as the correct answer.",
-      "Explains that Themes control appearance such as backgrounds, grids, and text."
+    "prompt": "In `coord_fixed(ratio = 2)`, how is one y unit drawn relative to one x unit?",
+    "options": [
+      "It is shown in two facet panels",
+      "It receives two axis labels",
+      "It occupies twice the screen distance",
+      "It is divided by two in the data"
     ],
-    "explanation": "A complete correction identifies Non-data styling elements and applies this rule: Themes control appearance such as backgrounds, grids, and text.",
+    "correct": 2,
+    "explanation": "The fixed-coordinate ratio specifies the y-unit screen distance relative to the x-unit screen distance.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4014,17 +4075,19 @@
     "number": 171
   },
   {
-    "id": "drill-week-09-44-why-not",
-    "type": "open",
+    "id": "drill-week-09-44-application",
+    "type": "single",
     "week": "week-09",
     "topic": "Coordinates, facets, and themes",
-    "prompt": "A learner chose **mutate()** when asked: “Where should axis title and legend position usually be adjusted?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "theme(). theme() controls non-data components including text and legend placement.",
-    "keyPoints": [
-      "Names theme() as the correct answer.",
-      "Explains that theme() controls non-data components including text and legend placement."
+    "prompt": "A smoother must use all observations, but the viewer should inspect only x values from 20 to 40. Which approach preserves the fit?",
+    "options": [
+      "Add `coord_cartesian(xlim = c(20, 40))`",
+      "Filter to x values from 20 to 40 first",
+      "Set scale limits before the smoother",
+      "Convert x to a factor"
     ],
-    "explanation": "A complete correction identifies theme() and applies this rule: theme() controls non-data components including text and legend placement.",
+    "correct": 0,
+    "explanation": "Coordinate zoom occurs after statistics, so the smoother can still be fitted using the full data.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4059,17 +4122,19 @@
     "number": 173
   },
   {
-    "id": "drill-week-10-45-why-not",
-    "type": "open",
+    "id": "drill-week-10-45-application",
+    "type": "single",
     "week": "week-10",
     "topic": "Geospatial vectors",
-    "prompt": "A student answers the following question with **factor object**:\n\n> What kind of object is commonly used for vector geospatial data in R?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "sf object. The sf package stores simple-feature geometries with attribute columns.",
-    "keyPoints": [
-      "Names sf object as the correct answer.",
-      "Explains that The sf package stores simple-feature geometries with attribute columns."
+    "prompt": "Two `sf` layers describe the same area but use different coordinate reference systems. What should happen before overlaying them?",
+    "options": [
+      "Join them by row number",
+      "Convert their coordinates to factors",
+      "Transform one layer so both use a compatible CRS",
+      "Drop both geometry columns"
     ],
-    "explanation": "A complete correction identifies sf object and applies this rule: The sf package stores simple-feature geometries with attribute columns.",
+    "correct": 2,
+    "explanation": "Spatial operations require compatible coordinate systems; `st_transform()` converts coordinates to a target CRS.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4105,17 +4170,12 @@
     "number": 175
   },
   {
-    "id": "drill-week-10-46-why-not",
+    "id": "drill-week-10-46-application",
     "type": "open",
     "week": "week-10",
     "topic": "Geospatial vectors",
-    "prompt": "During revision, a classmate claims **geom_bar()** is the answer to this question:\n\n> Which geom is commonly used to draw sf geometries in ggplot2?\n\nRespond as a tutor: give the correct answer, then justify it using the underlying concept.",
-    "idealAnswer": "geom_sf(). geom_sf() understands simple-feature geometry columns.",
-    "keyPoints": [
-      "Names geom_sf() as the correct answer.",
-      "Explains that geom_sf() understands simple-feature geometry columns."
-    ],
-    "explanation": "A complete correction identifies geom_sf() and applies this rule: geom_sf() understands simple-feature geometry columns.",
+    "prompt": "Coordinates are already expressed in one CRS, but a script calls `st_set_crs()` with another CRS. What is wrong with that operation?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Assigning CRS metadata does not project existing coordinate values into a different system.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4124,6 +4184,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "It changes the CRS label without recalculating coordinates. Assigning CRS metadata does not project existing coordinate values into a different system.",
+    "keyPoints": [
+      "Gives the answer: It changes the CRS label without recalculating coordinates",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 176
   },
   {
@@ -4149,17 +4214,19 @@
     "number": 177
   },
   {
-    "id": "drill-week-10-47-why-not",
-    "type": "open",
+    "id": "drill-week-10-47-application",
+    "type": "single",
     "week": "week-10",
     "topic": "Geospatial vectors",
-    "prompt": "Evaluate this attempted answer.\n\nQuestion: Why does coordinate reference system matter for maps?\n\nAttempt: **It decides which rows are missing**\n\nReplace the attempt with the correct answer and briefly explain why the replacement is correct.",
-    "idealAnswer": "It controls how geographic coordinates are projected to the plane. CRS/projection affects shapes, distances, and areas on a flat display.",
-    "keyPoints": [
-      "Names It controls how geographic coordinates are projected to the plane as the correct answer.",
-      "Explains that CRS/projection affects shapes, distances, and areas on a flat display."
+    "prompt": "Which geometry type is appropriate for a road network?",
+    "options": [
+      "POLYGON only",
+      "A numeric factor with no geometry",
+      "LINESTRING or MULTILINESTRING",
+      "POINT only"
     ],
-    "explanation": "A complete correction identifies It controls how geographic coordinates are projected to the plane and applies this rule: CRS/projection affects shapes, distances, and areas on a flat display.",
+    "correct": 2,
+    "explanation": "Roads are linear features and are represented by line geometries.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4195,17 +4262,19 @@
     "number": 179
   },
   {
-    "id": "drill-week-10-48-why-not",
-    "type": "open",
+    "id": "drill-week-10-48-application",
+    "type": "single",
     "week": "week-10",
     "topic": "Geospatial vectors",
-    "prompt": "A learner chose **Rows based only on string equality** when asked: “What does st_join() usually combine?”\n\nCorrect the learner without referring to option letters. Your response must name the correct result and the rule that produces it.",
-    "idealAnswer": "Attributes based on spatial relationships. Spatial joins use geometry relationships such as intersects or within.",
-    "keyPoints": [
-      "Names Attributes based on spatial relationships as the correct answer.",
-      "Explains that Spatial joins use geometry relationships such as intersects or within."
+    "prompt": "A point should inherit the district polygon that contains it. Which spatial relationship is the join based on?",
+    "options": [
+      "Containment or intersection of geometries",
+      "Equality of unrelated row numbers",
+      "Alphabetical order of district names",
+      "Matching colour-scale labels"
     ],
-    "explanation": "A complete correction identifies Attributes based on spatial relationships and applies this rule: Spatial joins use geometry relationships such as intersects or within.",
+    "correct": 0,
+    "explanation": "A spatial join uses a geometric predicate such as within, contains, or intersects.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4241,17 +4310,12 @@
     "number": 181
   },
   {
-    "id": "drill-week-10-49-why-not",
+    "id": "drill-week-10-49-application",
     "type": "open",
     "week": "week-10",
     "topic": "Geospatial vectors",
-    "prompt": "A student answers the following question with **A time series by line width**:\n\n> What is a choropleth map usually encoding?\n\nWrite a one- or two-sentence correction. State the better answer and explain the relevant rule or behavior.",
-    "idealAnswer": "A value by fill colour across areas. Choropleths colour polygons by a variable.",
-    "keyPoints": [
-      "Names A value by fill colour across areas as the correct answer.",
-      "Explains that Choropleths colour polygons by a variable."
-    ],
-    "explanation": "A complete correction identifies A value by fill colour across areas and applies this rule: Choropleths colour polygons by a variable.",
+    "prompt": "Why are raw case counts often a poor choropleth measure when regions have very different populations?\n\nAnswer without options, then justify your answer in one sentence.",
+    "explanation": "Normalizing by an appropriate denominator separates prevalence from the size of the population at risk.",
     "source": {
       "kind": "source-derived-drill",
       "paths": [
@@ -4260,6 +4324,11 @@
       ]
     },
     "needsReview": false,
+    "idealAnswer": "Counts can mainly reflect population size; a relevant rate supports fairer comparison. Normalizing by an appropriate denominator separates prevalence from the size of the population at risk.",
+    "keyPoints": [
+      "Gives the answer: Counts can mainly reflect population size; a relevant rate supports fairer comparison",
+      "Provides a relevant conceptual or behavioral justification."
+    ],
     "number": 182
   },
   {
@@ -4439,16 +4508,16 @@
   {
     "type": "single",
     "week": "week-01",
-    "prompt": "A QMD includes `![Plot](figures/chart.png)`. What must be true when submitting or moving the project?",
+    "prompt": "A plotted figure needs an automatically numbered caption that can be cross-referenced later. Which chunk option supplies the caption text?",
     "options": [
-      "The `figures/chart.png` file must still exist at that relative path.",
-      "Quarto will rewrite the path to any folder automatically.",
-      "The image path is ignored after the first render.",
-      "Only the HTML file is needed to rerender the QMD."
+      "echo",
+      "eval",
+      "warning",
+      "fig-cap"
     ],
-    "correct": 0,
-    "explanation": "Relative paths are resolved from the rendering context, so the referenced file must travel with the source at the expected location.",
-    "id": "supplemental-wk01-single-relative-path",
+    "correct": 3,
+    "explanation": "`fig-cap` supplies a figure caption; a labelled figure can then be referenced from the prose.",
+    "id": "supplemental-wk01-single-figure-caption",
     "topic": "Quarto and visual communication",
     "source": {
       "kind": "source-derived-drill",
@@ -4538,16 +4607,16 @@
   {
     "type": "single",
     "week": "week-02",
-    "prompt": "Given a tibble `starwars`, what does `starwars$height` return?",
+    "prompt": "A vector `species` contains many names. Which expression marks entries equal to either `'Human'` or `'Droid'`?",
     "options": [
-      "A tibble containing every column except height.",
-      "The number of rows with height values.",
-      "The help page for the height variable.",
-      "The `height` column as a vector."
+      "species == c('Human', 'Droid')",
+      "species & c('Human', 'Droid')",
+      "species[c('Human', 'Droid')]",
+      "species %in% c('Human', 'Droid')"
     ],
     "correct": 3,
-    "explanation": "The `$` operator extracts a named column from a data frame or tibble.",
-    "id": "supplemental-wk02-single-dollar",
+    "explanation": "`%in%` performs an elementwise membership test against the complete set of listed values.",
+    "id": "supplemental-wk02-single-membership",
     "topic": "R vectors, factors, and subsetting",
     "source": {
       "kind": "source-derived-drill",
